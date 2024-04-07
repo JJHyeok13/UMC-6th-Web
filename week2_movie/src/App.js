@@ -1,23 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { movies } from "./movieData";
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="background">
+      <h1 className="header-title">Movies</h1>
+      <hr />
+      <div className="movie-container">
+        {movies.results.map((movie, index) => (
+          <div key={index} className="content-container">
+            <div>
+              <div className="movie-overview">
+                <h2>{movie.title}</h2>
+                <p>{movie.overview}</p>
+              </div>
+
+              <div className="movie-poster-container">
+                <img
+                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                  alt={movie.title}
+                  className="movie-poster"
+                />
+              </div>
+
+              <div className="movie-data">
+                <div>{movie.title}</div>
+                <div>{movie.vote_average}</div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
