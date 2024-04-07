@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Login Page</title>
+    <style>
+      /* 스타일링 */
+      body {
+        font-family: "Noto Sans KR", sans-serif;
+        padding-top: 100px;
+        background-color: skyblue;
+        background-size: cover;
+      }
+
+      .title-container {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      .login-container {
+        max-width: 450px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 40px 100px;
+        opacity: 0.6;
+      }
+
+      .input-group {
+        margin-bottom: 20px;
+      }
+
+      .input-group input {
+        width: 90%;
+        padding: 10px;
+        border: none;
+        border-bottom: 2px solid black;
+        outline: none;
+      }
+
+      .input-error {
+        display: none;
+        color: red;
+        font-size: small;
+      }
+
+      .input-correct {
+        display: none;
+        color: green;
+        font-size: small;
+      }
+
+      .btn-primary {
+        width: 200px;
+        background-color: gray;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-bottom: 30px;
+        pointer-events: none;
+      }
+
+      .btn-primary:hover {
+        background-color: black;
+      }
+
+      .bottom-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 1);
+        z-index: 1;
+      }
+
+      .modal-content {
+        width: 400px;
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      .close-button {
+        float: right;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-container">
+      <div class="title-container">
+        <h1>회원가입</h1>
+        <hr />
+      </div>
+
+      <div>
+        <div class="input-group">
+          <div>이름</div>
+          <input type="text" id="username" name="username" placeholder="이름" />
+          <p class="input-error" id="usernameError">필수 입력 항목입니다!</p>
+          <p class="input-correct" id="usernameCorrect">멋진 이름이네요!</p>
+        </div>
+
+        <div class="input-group">
+          <div>이메일</div>
+          <input type="email" id="email" placeholder="이메일" />
+          <p class="input-error" id="emailError">
+            올바른 이메일 형식이 아닙니다!
+          </p>
+          <p class="input-correct" id="emailCorrect">올바른 메일 형식입니다!</p>
+        </div>
+
+        <div class="input-group">
+          <div>나이</div>
+          <input type="number" id="age" name="age" placeholder="나이" />
+          <p class="input-error" id="ageError">나이를 입력해주세요!</p>
+          <p class="input-error" id="ageInvalid">숫자를 입력해주세요!</p>
+          <p class="input-error" id="ageNegative">음수가 될 수 없습니다!</p>
+          <p class="input-error" id="ageDecimal">소수가 될 수 없습니다!</p>
+          <p class="input-error" id="ageUnder19">
+            19세 미만은 가입할 수 없습니다!
+          </p>
+          <p class="input-correct" id="ageCorrect">올바른 나이 형식입니다!</p>
+        </div>
+
+        <div class="input-group">
+          <div>비밀번호</div>
+          <input type="password" id="password" placeholder="비밀번호" />
+          <p class="input-error" id="passwordError">
+            영어+숫자+특수문자를 혼합하여 작성해주세요
+          </p>
+          <p class="input-correct" id="passwordCorrect">
+            안전한 비밀번호입니다!
+          </p>
+        </div>
+
+        <div class="input-group">
+          <div>비밀번호확인</div>
+          <input
+            type="password"
+            id="passwordCheck"
+            placeholder="비밀번호 확인"
+          />
+          <p class="input-error" id="passwordCheckError">
+            비밀번호가 일치하지 않습니다!
+          </p>
+          <p class="input-correct" id="passwordCheckCorrect">
+            비밀번호가 일치합니다.
+          </p>
+        </div>
+
+        <div class="bottom-container">
+          <button id="registerButton" type="submit" class="btn-primary">
+            회원가입
+          </button>
+        </div>
+      </div>
+
+      <div id="myModal" class="modal">
+        <div class="modal-content">
+          <h1>가입성공!</h1>
+          <p>umc 회원의 가입을 축하합니다</p>
+          <button class="close-button">닫기</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // 이름 입력 필드에 대한 유효성 검사 함수
+      function validateUsername() {
+        const username = document.getElementById("username");
+        const usernameCorrect = document.getElementById("usernameCorrect");
+        const usernameError = document.getElementById("usernameError");
+
+        const isNameValid = username.value.trim() !== "";
+
+        if (isNameValid) {
+          usernameCorrect.style.display = "flex";
+          usernameError.style.display = "none";
+        } else {
+          usernameCorrect.style.display = "none";
+          usernameError.style.display = "flex";
+        }
+      }
+
+      // 이메일 입력 필드에 대한 유효성 검사 함수
+      function validateEmail() {
+        const email = document.getElementById("email");
+        const emailCorrect = document.getElementById("emailCorrect");
+        const emailError = document.getElementById("emailError");
+
+        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        const isEmailValid = emailRegex.test(email.value.trim());
+
+        if (isEmailValid) {
+          emailCorrect.style.display = "flex";
+          emailError.style.display = "none";
+        } else {
+          emailCorrect.style.display = "none";
+          emailError.style.display = "flex";
+        }
+      }
+
+      // 나이 입력 필드에 대한 유효성 검사 함수
+      function validateAge() {
+        const age = document.getElementById("age");
+        const ageCorrect = document.getElementById("ageCorrect");
+        const ageError = document.getElementById("ageError");
+        const ageInvalid = document.getElementById("ageInvalid");
+        const ageNegative = document.getElementById("ageNegative");
+        const ageDecimal = document.getElementById("ageDecimal");
+        const ageUnder19 = document.getElementById("ageUnder19");
+
+        const ageValue = parseFloat(age.value.trim());
+        const isAgeValid =
+          !isNaN(ageValue) &&
+          ageValue >= 0 &&
+          Number.isInteger(ageValue) &&
+          ageValue >= 19;
+
+        if (isAgeValid) {
+          ageCorrect.style.display = "flex";
+          ageError.style.display = "none";
+        } else {
+          ageCorrect.style.display = "none";
+          ageError.style.display = "flex";
+        }
+      }
+
+      // 비밀번호 입력 필드에 대한 유효성 검사 함수
+      function validatePassword() {
+        const password = document.getElementById("password");
+        const passwordCorrect = document.getElementById("passwordCorrect");
+        const passwordError = document.getElementById("passwordError");
+
+        const passwordRegex =
+          /(?=.*[a-zA-Z])(?=.*\d)(?=.*[@#$%^&+=!])(?=.*[a-zA-Z\d@#$%^&+=!]).{8,}$/;
+        const isPasswordValid = passwordRegex.test(password.value.trim());
+
+        if (isPasswordValid) {
+          passwordCorrect.style.display = "flex";
+          passwordError.style.display = "none";
+        } else {
+          passwordCorrect.style.display = "none";
+          passwordError.style.display = "flex";
+        }
+      }
+
+      // 비밀번호 확인 입력 필드에 대한 유효성 검사 함수
+      function validatePasswordCheck() {
+        const password = document.getElementById("password");
+        const passwordCheck = document.getElementById("passwordCheck");
+        const passwordCheckCorrect = document.getElementById(
+          "passwordCheckCorrect"
+        );
+        const passwordCheckError =
+          document.getElementById("passwordCheckError");
+
+        const isConfirmPasswordValid = password.value === passwordCheck.value;
+
+        if (isConfirmPasswordValid) {
+          passwordCheckCorrect.style.display = "flex";
+          passwordCheckError.style.display = "none";
+        } else {
+          passwordCheckCorrect.style.display = "none";
+          passwordCheckError.style.display = "flex";
+        }
+      }
+
+      // 각 입력 필드에 대한 유효성 검사 함수를 호출하는 함수
+      function inputInput() {
+        validateUsername();
+        validateEmail();
+        validateAge();
+        validatePassword();
+        validatePasswordCheck();
+      }
+
+      // 각 입력 필드에 대해 input 이벤트를 사용하여 값을 변경할 때마다 inputInput 함수 호출
+      document.getElementById("username").addEventListener("input", inputInput);
+      document.getElementById("email").addEventListener("input", inputInput);
+      document.getElementById("age").addEventListener("input", inputInput);
+      document.getElementById("password").addEventListener("input", inputInput);
+      document
+        .getElementById("passwordCheck")
+        .addEventListener("input", inputInput);
+    </script>
+  </body>
+</html>
