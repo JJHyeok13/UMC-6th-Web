@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 
-const Todolist = () => {
+function App() {
   const [inputValue, setInputValue] = useState("");
 
   const [todos, setTodos] = useState([
@@ -10,6 +10,13 @@ const Todolist = () => {
     { id: 3, content: "Sleeping", isDone: true },
     { id: 4, content: "Watching You-Tube", isDone: true },
   ]);
+
+  const completeTodos = (id) => {
+    const updatedTodos = todos.map((todo) =>
+      todo.id === id ? { ...todo, isDone: true } : todo
+    );
+    setTodos(updatedTodos);
+  };
 
   useEffect(() => {
     console.log(todos);
@@ -22,6 +29,7 @@ const Todolist = () => {
         content: newTodoContent,
         isDone: false,
       };
+
       setTodos([...todos, newTodo]);
     }
   };
@@ -29,15 +37,8 @@ const Todolist = () => {
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       addTodos(inputValue);
-      setInputValue(""); // 입력값 초기화
+      setInputValue("");
     }
-  };
-
-  const completeTodos = (id) => {
-    const updatedTodos = todos.map((todo) =>
-      todo.id === id ? { ...todo, isDone: true } : todo
-    );
-    setTodos(updatedTodos);
   };
 
   const deleteTodos = (id) => {
@@ -47,7 +48,7 @@ const Todolist = () => {
 
   return (
     <div class="page-container">
-      <h1>UMC Study Plan</h1>
+      <h1 class="header">UMC Study Plan</h1>
       <hr />
 
       {/* Todos 추가하는 input */}
@@ -69,7 +70,12 @@ const Todolist = () => {
                 <div key={data.id} class="list">
                   <div>{data.content}</div>
                   <div>
-                    <button onClick={() => completeTodos(data.id)}>완료</button>
+                    <button
+                      className="stylebutton"
+                      onClick={() => completeTodos(data.id)}
+                    >
+                      완료
+                    </button>
                   </div>
                 </div>
               )
@@ -84,7 +90,12 @@ const Todolist = () => {
                 <div key={data.id} class="list">
                   <div>{data.content}</div>
                   <div>
-                    <button onClick={() => deleteTodos(data.id)}>삭제</button>
+                    <button
+                      className="stylebutton"
+                      onClick={() => deleteTodos(data.id)}
+                    >
+                      삭제
+                    </button>
                   </div>
                 </div>
               )
@@ -93,6 +104,6 @@ const Todolist = () => {
       </div>
     </div>
   );
-};
+}
 
-export default Todolist;
+export default App;
