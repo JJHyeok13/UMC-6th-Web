@@ -1,16 +1,8 @@
-import React from "react";
 import styled from "styled-components";
-import { movies } from "../movieData";
 
 const Background = styled.div`
   width: 100%;
   background-color: navy;
-`;
-
-const HeaderTitle = styled.h1`
-  text-align: center;
-  color: white;
-  padding: 20px;
 `;
 
 const MovieContainer = styled.div`
@@ -18,7 +10,7 @@ const MovieContainer = styled.div`
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 20px;
 
-  padding: 10px 40px;
+  padding: 100px 40px;
 `;
 
 const ContentContainer = styled.div`
@@ -63,13 +55,11 @@ const MovieData = styled.div`
   padding-bottom: 50px;
 `;
 
-const MoviePage = () => {
+const MovieComponent = ({ movieData }) => {
   return (
     <Background>
-      <HeaderTitle>Movies</HeaderTitle>
-      <hr />
       <MovieContainer>
-        {movies.results.map((movie, index) => (
+        {movieData.map((movie, index) => (
           <ContentContainer key={index}>
             <div>
               <MovieOverview className="movie-overview">
@@ -97,4 +87,4 @@ const MoviePage = () => {
   );
 };
 
-export default MoviePage;
+export default MovieComponent;

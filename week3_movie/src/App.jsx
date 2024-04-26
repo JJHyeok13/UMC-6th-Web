@@ -1,8 +1,10 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./layout/layout";
-import MoviePage from "./pages/MoviePage";
 import MainPage from "./pages/MainPage";
+import PopularPage from "./pages/PopularPage";
+import NowPlayingPage from "./pages/NowPlayingPage";
+import TopRatedPage from "./pages/TopRatedPage";
 import UpcomingPage from "./pages/UpcomingPage";
 
 function App() {
@@ -11,7 +13,9 @@ function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<MainPage />} />
-          <Route path="movie" element={<MoviePage />} />
+          <Route path="/popular" element={<PopularPage />} />
+          <Route path="/nowplaying" element={<NowPlayingPage />} />
+          <Route path="/toprated" element={<TopRatedPage />} />
           <Route path="/upcoming" element={<UpcomingPage />} />
         </Route>
       </Routes>

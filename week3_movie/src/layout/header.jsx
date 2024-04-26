@@ -5,12 +5,13 @@ import { Link } from "react-router-dom";
 const Container = styled.div`
   width: 100%;
   height: 8%;
-  background-color: navy;
+  background-color: #0c0c41;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 
   position: fixed;
+  z-index: 1;
 `;
 
 const LeftContainer = styled.div`
