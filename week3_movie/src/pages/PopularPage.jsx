@@ -13,8 +13,7 @@ const PopularPage = () => {
           {
             headers: {
               accept: "application/json",
-              Authorization:
-                "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNGExZTI3MmNjZTg5YmZjMzczNTgyM2IzMDZlOGQ5YyIsInN1YiI6IjY1NWYxYThlNzA2ZTU2MDBlMTUxYTQyOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.J5P95D1iwiYxcuJFdyot-4hZ0peqxUiPLawZuTUO4J0",
+              Authorization: `Bearer ${import.meta.env.VITE_TMDB_ACCESS_TOKEN}`,
             },
           }
         );
