@@ -1,10 +1,5 @@
 import styled from "styled-components";
 
-const Background = styled.div`
-  width: 100%;
-  background-color: navy;
-`;
-
 const MovieContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -57,33 +52,31 @@ const MovieData = styled.div`
 
 const MovieComponent = ({ movieData }) => {
   return (
-    <Background>
-      <MovieContainer>
-        {movieData.map((movie, index) => (
-          <ContentContainer key={index}>
-            <div>
-              <MovieOverview className="movie-overview">
-                <h2>{movie.title}</h2>
-                <p>{movie.overview}</p>
-              </MovieOverview>
+    <MovieContainer>
+      {movieData.map((movie, index) => (
+        <ContentContainer key={index}>
+          <div>
+            <MovieOverview className="movie-overview">
+              <h2>{movie.title}</h2>
+              <p>{movie.overview}</p>
+            </MovieOverview>
 
-              <div className="movie-poster-container">
-                <MoviePoster
-                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                  alt={movie.title}
-                  className="movie-poster"
-                />
-              </div>
-
-              <MovieData>
-                <div>{movie.title}</div>
-                <div>{movie.vote_average}</div>
-              </MovieData>
+            <div className="movie-poster-container">
+              <MoviePoster
+                src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                alt={movie.title}
+                className="movie-poster"
+              />
             </div>
-          </ContentContainer>
-        ))}
-      </MovieContainer>
-    </Background>
+
+            <MovieData>
+              <div>{movie.title}</div>
+              <div>{movie.vote_average}</div>
+            </MovieData>
+          </div>
+        </ContentContainer>
+      ))}
+    </MovieContainer>
   );
 };
 
