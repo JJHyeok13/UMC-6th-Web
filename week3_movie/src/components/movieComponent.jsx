@@ -1,3 +1,4 @@
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const MovieContainer = styled.div`
@@ -51,10 +52,18 @@ const MovieData = styled.div`
 `;
 
 const MovieComponent = ({ movieData }) => {
+  const navigate = useNavigate();
+
+  const handleClick = (movie) => {
+    navigate(`/movie/${movie.title}`, {
+      state: movie,
+    });
+  };
+
   return (
     <MovieContainer>
       {movieData.map((movie, index) => (
-        <ContentContainer key={index}>
+        <ContentContainer key={index} onClick={() => handleClick(movie)}>
           <div>
             <MovieOverview className="movie-overview">
               <h2>{movie.title}</h2>
