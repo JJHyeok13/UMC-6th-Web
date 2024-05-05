@@ -42,7 +42,12 @@ const MovieDetailPage = () => {
         <Information>
           <div>{title}</div>
           <div>{calScore(data.vote_average)}</div>
-          <div>{data.overview}</div>
+          <div>{data.release_date}</div>
+          <div>
+            {data.overview
+              ? data.overview
+              : "TMDB에서 제공하는 API에 상세 줄거리 정보가 없습니다."}
+          </div>
         </Information>
       </Container>
     </Background>

@@ -7,6 +7,7 @@ import NowPlayingPage from "./pages/NowPlayingPage";
 import TopRatedPage from "./pages/TopRatedPage";
 import UpcomingPage from "./pages/UpcomingPage";
 import MovieDetailPage from "./pages/MovieDetailPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
 
           <Route path="/movie/:title" element={<MovieDetailPage />} />
         </Route>
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   );
