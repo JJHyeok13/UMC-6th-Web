@@ -1,4 +1,4 @@
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 const Background = styled.div`
@@ -23,7 +23,6 @@ const Information = styled.div`
 
 const MovieDetailPage = () => {
   const location = useLocation();
-  const { title } = useParams();
   const data = location.state;
 
   const calScore = (vote_average) => {
@@ -40,7 +39,7 @@ const MovieDetailPage = () => {
           className="movie-poster"
         />
         <Information>
-          <div>{title}</div>
+          <div>{data.title}</div>
           <div>{calScore(data.vote_average)}</div>
           <div>{data.release_date}</div>
           <div>

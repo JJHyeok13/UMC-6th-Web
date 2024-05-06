@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const MovieContainer = styled.div`
@@ -56,7 +56,13 @@ const MovieComponent = ({ movieData }) => {
 
   const handleClick = (movie) => {
     navigate(`/movie/${movie.title}`, {
-      state: movie,
+      state: {
+        poster_path: movie.poster_path,
+        title: movie.title,
+        overview: movie.overview,
+        vote_average: movie.vote_average,
+        release_date: movie.release_date,
+      },
     });
   };
 
