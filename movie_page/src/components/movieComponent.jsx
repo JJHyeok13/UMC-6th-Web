@@ -62,6 +62,7 @@ const MovieComponent = ({ movieData }) => {
         overview: movie.overview,
         vote_average: movie.vote_average,
         release_date: movie.release_date,
+        backdrop_path: movie.backdrop_path,
       },
     });
   };

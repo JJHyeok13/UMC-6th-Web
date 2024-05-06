@@ -4,21 +4,33 @@ import styled from "styled-components";
 const Background = styled.div`
   width: 100%;
   height: 100vh;
-  background-color: navy;
+  background: ${({ background }) => `url(${background})`};
+  background-size: cover;
+  background-position: center;
 `;
 
 const Container = styled.div`
   height: 100%;
   display: flex;
+  justify-content: center;
   align-items: center;
   color: white;
   padding: 10px;
+  background-color: rgba(26, 15, 114, 0.8); /* 배경색과 투명도 조절 */
+`;
+
+const PosterImage = styled.img`
+  width: 400px;
+  height: 600px;
 `;
 
 const Information = styled.div`
+  width: 50%;
+  height: 70%;
   display: flex;
   flex-direction: column;
   padding: 10px;
+  margin-left: 50px;
 `;
 
 const MovieDetailPage = () => {
@@ -31,17 +43,19 @@ const MovieDetailPage = () => {
   };
 
   return (
-    <Background>
+    <Background
+      background={`https://image.tmdb.org/t/p/w1280${data.backdrop_path}`}
+    >
       <Container>
-        <img
+        <PosterImage
           src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`}
           alt={data.title}
-          className="movie-poster"
         />
         <Information>
-          <div>{data.title}</div>
-          <div>{calScore(data.vote_average)}</div>
-          <div>{data.release_date}</div>
+          <h1>| {data.title}</h1>
+          <h3>평점 {calScore(data.vote_average)}</h3>
+          <h3>개봉일 {data.release_date}</h3>
+          <h3>줄거리</h3>
           <div>
             {data.overview
               ? data.overview
