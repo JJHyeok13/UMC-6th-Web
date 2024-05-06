@@ -23,7 +23,7 @@ const PopularPage = () => {
     const getMovieData = async () => {
       try {
         const res = await axios.get(
-          `https://api.themoviedb.org/3/movie/popular?language=ko-KR&page=1$`,
+          `https://api.themoviedb.org/3/movie/popular?language=ko-KR&page=1`,
           {
             headers: {
               accept: "application/json",
