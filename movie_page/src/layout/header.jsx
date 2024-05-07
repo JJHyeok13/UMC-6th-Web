@@ -6,7 +6,7 @@ import { useState } from "react";
 const Container = styled.div`
   width: 100%;
   height: 8%;
-  background-color: #0c0c41;
+  background-color: #717ada;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -34,7 +34,7 @@ const LoginLogout = styled.div`
   cursor: pointer;
 
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.2);
   }
 `;
 
@@ -42,10 +42,10 @@ const StyleLink = styled(Link)`
   text-decoration: none;
   padding: 15px;
   color: ${({ active }) => (active ? "skyblue" : "white")};
-  font-weight: ${({ active }) => (active ? "700" : "initial")};
+  font-weight: ${({ active }) => (active ? "700" : "500")};
 
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.2);
     color: skyblue;
   }
 `;

@@ -5,7 +5,9 @@ import { PacmanLoader } from "react-spinners";
 import styled from "styled-components";
 
 const Background = styled.div`
-  background-color: navy;
+  display: flex;
+  justify-content: center;
+  background-color: white;
 `;
 
 const LoadingBackground = styled.div`
@@ -35,6 +37,7 @@ const NowPlayingPage = () => {
             },
           }
         );
+        console.log(res.data.results);
         setIsLoading(true);
         setMovieData(res.data.results);
         setIsLoading(false);

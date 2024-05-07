@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const MovieContainer = styled.div`
+  width: 80%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 20px;
@@ -21,6 +22,7 @@ const ContentContainer = styled.div`
 
 const MovieOverview = styled.div`
   position: absolute;
+  font-size: 12px;
 
   display: none;
   color: white;
@@ -52,6 +54,7 @@ const MovieData = styled.div`
 `;
 
 const MovieComponent = ({ movieData }) => {
+  // 문법이라서 이렇게 외워서 사용하면 됨
   const navigate = useNavigate();
 
   const handleClick = (movie) => {
@@ -66,6 +69,8 @@ const MovieComponent = ({ movieData }) => {
       },
     });
   };
+
+  //6주차 워크북에 영화 별 상세정보 조회 API가 따로 있음.
 
   return (
     <MovieContainer>

@@ -15,7 +15,6 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   color: white;
-  padding: 10px;
   background-color: rgba(26, 15, 114, 0.8); /* 배경색과 투명도 조절 */
 `;
 
@@ -34,6 +33,8 @@ const Information = styled.div`
 `;
 
 const MovieDetailPage = () => {
+  // 현재 주소값을 받아오는 건데
+  // path state (navigate)
   const location = useLocation();
   const data = location.state;
 
