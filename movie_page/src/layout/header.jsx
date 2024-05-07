@@ -26,6 +26,11 @@ const HomeLogo = styled(Link)`
   color: white;
   font-weight: 600;
   font-size: 20px;
+
+  &:hover {
+    color: black;
+    transform: scale(1.1);
+  }
 `;
 
 const LoginLogout = styled.div`
