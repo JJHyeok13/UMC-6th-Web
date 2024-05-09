@@ -36,7 +36,7 @@ const ErrorMessage = styled.div`
 const SubmitButton = styled.div`
   margin-top: 30px;
   width: 50%;
-  background-color: ${(props) => (props.allValid ? "#0074ff" : "gray")};
+  background-color: ${(props) => (props.$allValid ? "#0074ff" : "gray")};
   border-radius: 30px;
   text-align: center;
   font-size: 20px;
@@ -91,17 +91,6 @@ const SignUpPage = () => {
     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{4,12}$/;
 
   const handleValid = () => {
-    if (Object.values(inputValue).every((value) => value === "")) {
-      setIsError({
-        nameError: "",
-        emailError: "",
-        ageError: "",
-        passwordError: "",
-        passwordCheckError: "",
-      });
-      return;
-    }
-
     // 이름 오류
     if (inputValue.name == "") {
       setIsError((prevError) => ({
@@ -360,7 +349,7 @@ const SignUpPage = () => {
 
       <SubmitButton
         onClick={SignUpClick}
-        allValid={
+        $allValid={
           isAvailable.nameAvailable &&
           isAvailable.emailAvailable &&
           isAvailable.ageAvailable &&

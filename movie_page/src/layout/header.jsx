@@ -46,8 +46,8 @@ const LoginLogout = styled(Link)`
 const StyleLink = styled(Link)`
   text-decoration: none;
   padding: 15px;
-  color: ${({ active }) => (active ? "skyblue" : "white")};
-  font-weight: ${({ active }) => (active ? "700" : "500")};
+  color: ${(props) => (props.$active ? "skyblue" : "white")};
+  font-weight: ${(props) => (props.$active ? "700" : "500")};
 
   &:hover {
     transform: scale(1.2);
@@ -70,16 +70,19 @@ const Header = () => {
       </ContentContainer>
       <ContentContainer>
         <LoginLogout to="/signup">회원가입</LoginLogout>
-        <StyleLink to="/popular" active={location.pathname == "/popular"}>
+        <StyleLink to="/popular" $active={location.pathname == "/popular"}>
           Popular
         </StyleLink>
-        <StyleLink to="/nowplaying" active={location.pathname == "/nowplaying"}>
+        <StyleLink
+          to="/nowplaying"
+          $active={location.pathname == "/nowplaying"}
+        >
           Now Playing
         </StyleLink>
-        <StyleLink to="/toprated" active={location.pathname == "/toprated"}>
+        <StyleLink to="/toprated" $active={location.pathname == "/toprated"}>
           Top Rated
         </StyleLink>
-        <StyleLink to="/upcoming" active={location.pathname == "/upcoming"}>
+        <StyleLink to="/upcoming" $active={location.pathname == "/upcoming"}>
           Upcoming
         </StyleLink>
       </ContentContainer>
