@@ -268,7 +268,6 @@ const SignUpPage = () => {
   }, [inputValue]);
 
   const SignUpClick = () => {
-    handleValid();
     if (
       isAvailable.nameAvailable &&
       isAvailable.emailAvailable &&
