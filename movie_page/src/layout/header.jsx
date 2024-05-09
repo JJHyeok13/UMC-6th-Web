@@ -33,7 +33,7 @@ const HomeLogo = styled(Link)`
   }
 `;
 
-const LoginLogout = styled.div`
+const LoginLogout = styled(Link)`
   padding: 15px;
   color: yellow;
   cursor: pointer;
@@ -69,9 +69,7 @@ const Header = () => {
         <HomeLogo to="/">UMC Movie</HomeLogo>
       </ContentContainer>
       <ContentContainer>
-        <LoginLogout onClick={handleSignUp}>
-          {isLoggedIn ? "로그아웃" : "로그인"}
-        </LoginLogout>
+        <LoginLogout to="/signup">회원가입</LoginLogout>
         <StyleLink to="/popular" active={location.pathname == "/popular"}>
           Popular
         </StyleLink>

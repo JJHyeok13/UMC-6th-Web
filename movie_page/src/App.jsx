@@ -8,6 +8,8 @@ import TopRatedPage from "./pages/TopRatedPage";
 import UpcomingPage from "./pages/UpcomingPage";
 import MovieDetailPage from "./pages/MovieDetailPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import SignUpPage from "./pages/SignUpPage";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<MainPage />} />
+          <Route path="/signup" element={<SignUpPage />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/popular" element={<PopularPage />} />
           <Route path="/nowplaying" element={<NowPlayingPage />} />
           <Route path="/toprated" element={<TopRatedPage />} />
