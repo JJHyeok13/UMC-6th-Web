@@ -222,6 +222,10 @@ const SignUpPage = () => {
         passwordAvailable: false,
       }));
     } else {
+      setIsError((prevError) => ({
+        ...prevError,
+        passwordError: "",
+      }));
       setIsAvailable((prevAvailable) => ({
         ...prevAvailable,
         passwordAvailable: true,
@@ -248,6 +252,10 @@ const SignUpPage = () => {
         passwordCheckAvailable: false,
       }));
     } else {
+      setIsError((prevError) => ({
+        ...prevError,
+        passwordCheckError: "",
+      }));
       setIsAvailable((prevAvailable) => ({
         ...prevAvailable,
         passwordCheckAvailable: true,
