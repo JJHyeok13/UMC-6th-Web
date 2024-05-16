@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import useDebounce from "../hooks/useDebounce";
 
 const Container = styled.div`
   height: 100%;
@@ -83,6 +84,7 @@ const MovieTitle = styled.div`
 
 const MainPage = () => {
   const [keyword, setKeyword] = useState("");
+  const debouncedKeyword = useDebounce(keyword, 1000);
   const [searchedMovie, setSearchedMovie] = useState([]);
   const navigate = useNavigate();
 
@@ -124,11 +126,11 @@ const MainPage = () => {
 
     if (keyword.trim() !== "") {
       // 검색어가 비어있지 않은 경우에만 검색 수행
-      searchMovie(keyword);
+      searchMovie(debouncedKeyword);
     } else {
       setSearchedMovie([]); // 검색어가 비어있는 경우 검색 결과를 초기화
     }
-  }, [keyword]);
+  }, [debouncedKeyword]);
 
   const handleChange = (event) => {
     setKeyword(event.target.value);
