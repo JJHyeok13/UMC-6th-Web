@@ -89,16 +89,7 @@ const MainPage = () => {
   const navigate = useNavigate();
 
   const handleClick = (movie) => {
-    navigate(`/movie/${movie.title}`, {
-      state: {
-        poster_path: movie.poster_path,
-        title: movie.title,
-        overview: movie.overview,
-        vote_average: movie.vote_average,
-        release_date: movie.release_date,
-        backdrop_path: movie.backdrop_path,
-      },
-    });
+    navigate(`/movie/${movie.id}`);
   };
 
   useEffect(() => {

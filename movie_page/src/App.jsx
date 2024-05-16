@@ -24,7 +24,7 @@ function App() {
           <Route path="/toprated" element={<TopRatedPage />} />
           <Route path="/upcoming" element={<UpcomingPage />} />
 
-          <Route path="/movie/:title" element={<MovieDetailPage />} />
+          <Route path="/movie/:id" element={<MovieDetailPage />} />
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
